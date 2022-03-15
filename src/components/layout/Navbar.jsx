@@ -1,0 +1,29 @@
+import styled from "styled-components";
+
+const StyledNavbar = styled.div`
+  background-color: ${ props => props.theme.white};
+  display: flex;
+  align-items: center;
+  height: 80px;
+  padding: 0 100px;
+  
+`
+const StyledLogo = styled.span`
+  flex: 1;
+  font-weight: bold;
+  font-size: 20px;
+`
+
+
+function Navbar () {
+  return (
+    <StyledNavbar>
+      <StyledLogo> #SocialDev </StyledLogo>
+      <div>
+        <a href = '#'> Desconectar </a>
+      </div>
+    </StyledNavbar>
+  )
+}
+
+export default Navbar
