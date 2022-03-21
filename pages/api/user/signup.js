@@ -1,5 +1,6 @@
-import connect from 'next-connect'
 import Joi from 'joi'
+
+import createHandler from '../../../lib/middlleware/nextConnect'
 
 import validate from '../../../lib/middlleware/validation'
 
@@ -13,7 +14,7 @@ const postSchema = Joi.object({
   password: Joi.string().required().max(50).min(6),
 })
 
-const signup = connect()
+const signup = createHandler()
   .post(validate({body: postSchema }), ( req, res ) => {
     signupUser(req.body)
     res.status(200).json({ teste: "ok"})
