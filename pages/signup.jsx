@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
+
 import ImageWithSpace from "../src/components/layout/ImageWithSpace"
 import H1 from "../src/components/typography/H1"
 import H2 from "../src/components/typography/H2"
@@ -24,18 +26,36 @@ const Text = styled.p`
 `
 
 function SignupPage () {
+
+  const [firstname, setFirstName] = useState('')
+  const [lastname, setLastName] = useState('')
+  const [user, setUser] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleForm = (event) => {
+    event.preventDefault()
+    console.log({
+      firstname,
+      lastname,
+      user,
+      email,
+      password
+    })
+  }
+
   return (
     <ImageWithSpace>
       <H1> # Social Dev </H1>
       <H4> Tudo que acontece no mundo dev, está aqui! </H4>
       <FormContainer> 
         <H2> Crie sua conta </H2>
-        <Form>
-          <Input label = "Nome" />
-          <Input label = "Sobrenome" />
-          <Input label = "Usuário" />
-          <Input label = "Email" />
-          <Input label = "Senha" type = "password" />
+        <Form onSubmit = {handleForm}>
+          <Input label = "Nome" onChange = {({target}) => {setFirstName(target.value)}}/>
+          <Input label = "Sobrenome" onChange = {({target}) => {setLastName(target.value)}} />
+          <Input label = "Usuário" onChange = {({target}) => {setUser(target.value)}} />
+          <Input label = "Email" onChange = {({target}) => {setEmail(target.value)}} />
+          <Input label = "Senha" type = "password" onChange = {({target}) => {setPassword(target.value)}} />
           <Button> Criar conta </Button>
         </Form>
         <Text> Já possui uma conta? <Link href = "/login"> Faça seu login! </Link></Text>
