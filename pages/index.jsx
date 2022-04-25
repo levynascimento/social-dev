@@ -1,5 +1,8 @@
+import { useEffect } from 'react'
 import styled from 'styled-components'
 import { withIronSessionSsr } from 'iron-session/next'
+import axios from 'axios'
+import useSWR from 'swr'
 
 import { ironConfig } from '../lib/middlleware/ironSession'
 
@@ -33,7 +36,12 @@ const PostContainer = styled.div`
   margin-top: 20px;
 `
 
+const fetcher = url => axios.get(url).then(res => res.data)
+
 function HomePage ({ user }) {
+  const { data } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/post`, fetcher)
+  
+  
   return (
     <>
       <Navbar />
@@ -47,9 +55,17 @@ function HomePage ({ user }) {
               <RefreshPost> Carregar novas postagens </RefreshPost>
           </RefreshPostContainer>
           <PostContainer>
-            <Post />
-            <Post />
-            <Post />
+            {
+              data?.map(post => 
+                <Post 
+                  key = {post._id}
+                  text = {post.text}
+                  user = {post.createdBy.user}
+                  date = {post.createdDate}
+                />
+
+              )
+            }
           </PostContainer>
         </Container>
       </Content>
