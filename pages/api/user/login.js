@@ -1,4 +1,4 @@
-import Joi from 'joi'
+
 import { withIronSessionApiRoute } from 'iron-session/next'
 
 import createHandler from '../../../lib/middlleware/nextConnect'
