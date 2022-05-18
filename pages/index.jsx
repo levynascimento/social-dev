@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import styled from 'styled-components'
 import { withIronSessionSsr } from 'iron-session/next'
 import axios from 'axios'
