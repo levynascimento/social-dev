@@ -66,7 +66,7 @@ function CreatePost ({username}) {
         <H4> <Title>No que você está pensando, @{username}? </Title> </H4>
         <form onSubmit= {handleSubmit(onSubmit)} >
           <TextContainer> 
-            <ControlledTextarea placeholder = "Digite sua mensagem" rows = "4" control = {control} name = "text" maxLength = "256" />
+            <ControlledTextarea placeholder = "Digite a mensagem" rows = "4" control = {control} name = "text" maxLength = "256" />
           </TextContainer>
           <BottomContainer>
             <BottomText> A sua mensagem será pública </BottomText>
